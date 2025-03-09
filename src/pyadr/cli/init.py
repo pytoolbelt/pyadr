@@ -1,4 +1,5 @@
 from argparse import Namespace
+from pyadr import project
 
 def configure_parser(subparser) -> None:
     new_parser = subparser.add_parser("init", help="Init the ADR project in this directory")
@@ -6,5 +7,6 @@ def configure_parser(subparser) -> None:
 
 
 def entrypoint(cliargs: Namespace) -> int:
-    print("init", cliargs)
+    p = project.Project()
+    p.init()
     return 0

@@ -3,6 +3,7 @@ from pyadr import config
 
 from .exceptions import PyadrError
 
+
 class ErrorHandler:
     def __init__(self) -> None:
         self.debug = config.PYADR_DEBUG

@@ -1,7 +1,8 @@
 import argparse
-from . import new, init
+from . import new, init, list_
 
 __version__ = "0.0.0"
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -11,7 +12,7 @@ def parse_args():
     sub_parsers = parser.add_subparsers(dest="command")
     sub_parsers.required = True
 
-    commands = [new, init]
+    commands = [new, init, list_]
     commands.sort(key=lambda x: x.__name__)
 
     for command in commands:

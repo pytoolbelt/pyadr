@@ -1,4 +1,5 @@
 from argparse import Namespace
+from pyadr import project
 
 def configure_parser(subparser) -> None:
     new_parser = subparser.add_parser("new", help="Create a new ADR")
@@ -7,5 +8,7 @@ def configure_parser(subparser) -> None:
 
 
 def entrypoint(cliargs: Namespace) -> int:
-    print("new", cliargs)
+    p = project.Project()
+    a = p.get_next_adr("New ADR")
+    a.touch()
     return 0

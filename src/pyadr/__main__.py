@@ -1,5 +1,6 @@
 from pyadr import cli
 
+
 def main() -> int:
     cliargs = cli.parse_args()
     return cliargs.entrypoint(cliargs)
