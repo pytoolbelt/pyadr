@@ -1,0 +1,10 @@
+pyproject.toml
+src/pyadr/__init__.py
+src/pyadr/__main__.py
+src/pyadr.egg-info/PKG-INFO
+src/pyadr.egg-info/SOURCES.txt
+src/pyadr.egg-info/dependency_links.txt
+src/pyadr.egg-info/entry_points.txt
+src/pyadr.egg-info/requires.txt
+src/pyadr.egg-info/top_level.txt
+src/pyadr/cli/__init__.py

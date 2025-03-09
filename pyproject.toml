@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "pyadr"
+version = "0.0.1"
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+	"setuptools==75.8.0",
+	"build==1.2.2",
+	"pytest==8.3.4",
+	"ruff==0.9.3",
+]
+
+
+[project.scripts]
+adr = "pyadr.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*"]
+
+[tool.ruff]
+line-length = 160
+
+[tool.ruff.lint]
+select = [
+	"E", # pycodestyle errors
+	"I", # isort
+	"F", # pyflakes
+]
