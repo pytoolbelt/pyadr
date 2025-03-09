@@ -1,0 +1,1 @@
+PYADR_DEBUG = True
