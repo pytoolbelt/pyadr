@@ -26,6 +26,18 @@ class FileIndex:
         self._index += 1
 
 
+class Adr:
+
+    def __init__(self, index: FileIndex, title: str, path: Path) -> None:
+        self.index = index
+        self.title = title
+        self.path = path
+
+    @classmethod
+    def from_path(cls, adr_path: Path) -> 'Adr':
+        return cls(FileIndex.from_name(adr_path.name), adr_path.stem.split("-")[1], adr_path)
+
+
 class Project:
 
     def __init__(self, root: Optional[Path] = None) -> None:
@@ -64,5 +76,6 @@ class Project:
             i = FileIndex(1)
         return i
 
-    def get_next_adr(self, title: str) -> Path:
-        return self.adr_dir / f"{self.get_next_index().index_as_str}-{title}.md"
+    def get_next_adr(self, title: str) -> Adr:
+        path = self.adr_dir / f"{self.get_next_index().index_as_str}-{title}.md"
+        return Adr.from_path(path)
