@@ -1,5 +1,5 @@
 from argparse import Namespace
-from pyadr import project
+from pyadr import adr
 
 def configure_parser(subparser) -> None:
     list_parser = subparser.add_parser("list", help="List all the adrs in the project")
@@ -8,7 +8,7 @@ def configure_parser(subparser) -> None:
 
 
 def entrypoint(cliargs: Namespace) -> int:
-    p = project.Project()
-    for adr in p.list_adrs(cliargs.reverse):
-        print(adr.name)
+    project = adr.Project()
+    for adr_ in project.list_adrs(cliargs.reverse):
+        print(adr_.filename)
     return 0

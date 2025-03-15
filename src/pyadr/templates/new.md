@@ -1,7 +1,7 @@
-# ADR {number}: {title}
+# ADR {adr.number.number}: {adr.title}
 
 ## Status
-Status: Proposed/Accepted/Deprecated/Superseded
+Status: {adr.status.value}
 
 ## Context
 Describe the context and the forces at play.
