@@ -15,8 +15,8 @@ class ErrorHandler:
         """Reraise exception if we are debugging."""
         if self.debug:
             raise exception
-        else:
-            return 1
+        print(f"Error: {exception}")
+        return 1
 
 
 def handle_cli_errors(func):
