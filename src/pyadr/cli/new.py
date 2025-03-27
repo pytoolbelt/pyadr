@@ -16,7 +16,6 @@ class FormatSupersede(Action):
         setattr(namespace, "supersede", values.zfill(4))
 
 
-
 def configure_parser(subparser) -> None:
     new_parser = subparser.add_parser("new", help="Create a new ADR")
     new_parser.add_argument("--supersede", "-s", type=str, action=FormatSupersede, help="Supersede the ADR")

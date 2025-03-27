@@ -5,6 +5,7 @@ from typing import Optional, List, Iterator
 from pyadr import config
 from pyadr.error_handling.exceptions import PyadrError
 
+
 class AdrStatus(Enum):
     PROPOSED = "Proposed"
     ACCEPTED = "Accepted"
@@ -12,14 +13,12 @@ class AdrStatus(Enum):
     SUPERSEDED = "Superseded"
 
 
-
 class FileNumber:
-
     def __init__(self, i: int) -> None:
         self._i = i
 
     @classmethod
-    def from_filename(cls, name: str) -> 'FileNumber':
+    def from_filename(cls, name: str) -> "FileNumber":
         return cls(int(name.split("-")[0]))
 
     @property
@@ -35,16 +34,14 @@ class FileNumber:
 
 
 class Adr:
-
     def __init__(
-            self,
-            number: FileNumber,
-            title: str,
-            status: AdrStatus,
-            content: str = "",
-            superseded_adr: Optional["Adr"] = None,
-            supersedes_adr: Optional["Adr"] = None
-
+        self,
+        number: FileNumber,
+        title: str,
+        status: AdrStatus,
+        content: str = "",
+        superseded_adr: Optional["Adr"] = None,
+        supersedes_adr: Optional["Adr"] = None,
     ) -> None:
         self._number = number
         self.title = title
@@ -54,15 +51,15 @@ class Adr:
         self.supersedes_adr = supersedes_adr
 
     @classmethod
-    def from_path(cls, path: Path) -> 'Adr':
+    def from_path(cls, path: Path) -> "Adr":
         content = path.read_text()
         return cls.from_content(content)
 
     @classmethod
-    def from_content(cls, content: str) -> 'Adr':
-        number_match = re.search(r'# ADR (\d+): (.+)', content)
-        status_match = re.search(r'Status: (Proposed|Accepted|Deprecated|Superseded)', content)
-        content_section = re.search(r'## Context(.*)', content, re.DOTALL)
+    def from_content(cls, content: str) -> "Adr":
+        number_match = re.search(r"# ADR (\d+): (.+)", content)
+        status_match = re.search(r"Status: (Proposed|Accepted|Deprecated|Superseded)", content)
+        content_section = re.search(r"## Context(.*)", content, re.DOTALL)
 
         if not (number_match and status_match):
             raise ValueError("ADR content is not in the expected format")
@@ -86,24 +83,23 @@ class Adr:
 
 
 class Project:
-
     def __init__(self, root: Optional[Path] = None) -> None:
         self.root = root or config.PYADR_PROJECT_ROOT
 
     @property
     def docs_dir(self) -> Path:
-        return self.root / 'docs'
+        return self.root / "docs"
 
     @property
     def adr_dir(self) -> Path:
-        return self.docs_dir / 'adr'
+        return self.docs_dir / "adr"
 
     def init(self) -> None:
         self.docs_dir.mkdir(parents=True, exist_ok=True)
         self.adr_dir.mkdir(parents=True, exist_ok=True)
 
     def adr_paths(self) -> Iterator[Path]:
-        for path in self.adr_dir.glob('*.md'):
+        for path in self.adr_dir.glob("*.md"):
             if re.match(config.PYADR_FILE_PATTERN, path.name):
                 yield path
 
@@ -134,7 +130,6 @@ class Project:
 
 
 class TemplateLoader:
-
     def __init__(self, template_dir: Optional[Path] = None):
         self.template_dir = template_dir or config.PYADR_TEMPLATE_DIR
 
